@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Stella Cat's Life</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>A Stella Cat's Life</h1>
+    <p>Use Left/Right Arrow keys or A/D to move.</p>
+    <p>Use Up Arrow, W, or Spacebar to jump.</p>
+
+    <div id="ui-container">
+        <div id="level-indicator">Level: 1</div>
+        <div id="scoreboard">Score: 0</div>
+    </div>
+
+    <div id="game-container"> <!-- Added a wrapper for game area + overlay -->
+        <div id="game-area">
+            <div id="cat"></div>
+            <!-- Dynamic elements added here -->
+        </div>
+        <!-- Win Message Overlay -->
+        <div id="win-message" class="game-overlay">You Win!</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
