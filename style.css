@@ -1,0 +1,165 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px; /* Reduced margin */
+    background-color: #f0f0f0;
+    position: relative; /* Needed for absolute positioning of UI */
+}
+
+/* --- NEW UI CONTAINER --- */
+#ui-container {
+    position: absolute; /* Position relative to body */
+    top: 65px;          /* Adjust as needed */
+    left: calc(50% - 400px - 30px); /* Position left of game area: center - half_width - padding */
+    width: 100px; /* Example width */
+    text-align: left;
+    z-index: 10;
+}
+
+#level-indicator {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    background-color: rgba(220, 220, 220, 0.7);
+    padding: 3px 6px;
+    border-radius: 4px;
+    display: inline-block; /* Fit content */
+}
+
+#scoreboard {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    background-color: rgba(220, 220, 220, 0.7);
+    padding: 3px 6px;
+    border-radius: 4px;
+    display: inline-block; /* Fit content */
+}
+
+
+/* --- NEW GAME CONTAINER WRAPPER --- */
+#game-container {
+    position: relative; /* Establishes positioning context for overlay */
+    width: 804px; /* Match game-area width + borders */
+    height: 604px; /* Match game-area height + borders */
+    margin-top: 50px;
+}
+
+#game-area {
+    width: 800px;
+    height: 600px;
+    background-color: #e0e0e0;
+    border: 2px solid #333;
+    position: relative; /* Still relative for its children */
+    overflow: hidden;
+    /* Removed margin-top as it's handled by game-container */
+}
+
+#cat {
+    /* Keep existing cat styles (width, height, background, etc.) */
+    width: 55px; height: 50px; background-image: url('cat_sprite.webp');
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+    image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+    position: absolute; /* Position relative to game-area */
+    /* bottom/left set by JS */
+    transform-origin: center bottom;
+    z-index: 5;
+}
+
+/* --- PLATFORM BASE STYLE --- */
+.platform {
+    background-color: #8B4513;
+    border: 2px solid #5a2d0c;
+    position: absolute;
+    box-sizing: border-box;
+    /* width, height, bottom, left set by JS */
+}
+
+/* --- NEW RAMP STYLE --- */
+.ramp {
+    background-color: #8B4513; /* Same color as platforms for now */
+    /* border: 1px solid #5a2d0c; Optional border */
+    position: absolute;
+    box-sizing: border-box;
+}
+
+/* Example for a ramp rising left-to-right */
+.ramp.left-to-right {
+    clip-path: polygon(0% 100%, 100% 0%, 100% 100%); /* Triangle shape */
+    /* background: linear-gradient(to top right, #8B4513, #a0522d); Optional gradient */
+}
+/* Add .ramp.right-to-left if needed later */
+
+/* --- PICKUP BASE STYLE --- */
+.pickup {
+    width: 35px;
+    height: 25px;
+    background-image: url('fish_pickup.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+    position: absolute;
+    z-index: 1;
+    /* bottom, left set by JS */
+}
+
+/* --- DOOR BASE STYLE (No Position) --- */
+#door {
+    width: 45px;
+    height: 70px;
+    background-image: url('door.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+    position: absolute;
+    z-index: 1;
+     /* bottom, left set by JS */
+}
+
+/* --- NEW WINDOW STYLE --- */
+#window {
+    width: 80px;  /* Adjust width as needed for your sprite */
+    height: 60px; /* Adjust height as needed for your sprite */
+    background-image: url('window_with_bird.png'); /* Use the window sprite */
+    background-size: contain; /* Or cover, or fixed pixels */
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: pixelated; /* Keep pixels sharp */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+    position: absolute;
+    z-index: 1; /* Behind cat */
+     /* bottom, left set by JS */
+}
+
+/* --- NEW GAME OVERLAY STYLE --- */
+.game-overlay {
+    position: absolute; /* Position over the game area */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+    display: flex; /* Use flexbox for centering */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 100; /* Ensure it's on top */
+    display: none; /* Hidden by default */
+}
